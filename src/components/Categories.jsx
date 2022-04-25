@@ -7,7 +7,7 @@ export const Categories = ({categories}) => {
     const onSelectItem = (index) => {
         setActiveItem(index)
     }
-    debugger;
+
     return (
         <div className="categories">
             <ul>
