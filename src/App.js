@@ -1,4 +1,5 @@
 import './styles/app.scss';
+import {Categories} from './components/Categories';
 
 function App() {
   return (
@@ -53,16 +54,7 @@ function App() {
               <div class="content">
                 <div class="container">
                   <div class="content__top">
-                    <div class="categories">
-                      <ul>
-                        <li class="active">Все</li>
-                        <li>Мясные</li>
-                        <li>Вегетарианская</li>
-                        <li>Гриль</li>
-                        <li>Острые</li>
-                        <li>Закрытые</li>
-                      </ul>
-                    </div>
+                    <Categories categories={["Мясные","Вегетерианские","Гриль","Острые","Закрытые"]} />
                     <div class="sort">
                       <div class="sort__label">
                         <svg
