@@ -25,7 +25,7 @@ export const HomePage = () => {
                 {
                     pizzas &&
                     pizzas.map(item => (
-                        <PizzaBlock />
+                        <PizzaBlock key={item.id} {...item} />
                     ))
                 }
             </div>
