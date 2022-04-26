@@ -1,29 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import {Categories} from '../components/Categories';
-import {SortPopup} from '../components/SortPopup';
+import {SortPopUpContainer} from '../components/SortPopup';
 import {PizzaBlock} from '../components/PizzaBlock';
 import axios from "axios";
+import {connect} from "react-redux";
+import {setPizzas} from '../redux/actions/pizzas';
 
-export const HomePage = () => {
-
-    const [pizzas,setPizzas] = useState();
-
+const HomePage = ({pizzas, setPizzas}) => {
+    debugger;
     useEffect(() => {
         axios.get('http://localhost:3000/db.json')
             .then((res) => setPizzas(res.data.pizzas));
     },[]);
-    debugger;
+
     return (
         <div className="container">
             <div className="content__top">
                 <Categories categories={["Мясные", "Вегетерианские", "Гриль", "Острые", "Закрытые"]}/>
 
-                <SortPopup sort={['популярности', 'цене', 'алфавиту']}/>
+                <SortPopUpContainer />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
                 {
-                    pizzas &&
+                    pizzas.length &&
                     pizzas.map(item => (
                         <PizzaBlock key={item.id} {...item} />
                     ))
@@ -32,3 +32,17 @@ export const HomePage = () => {
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        pizzas: state.pizzas,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPizzas: pizzas => dispatch(setPizzas(pizzas))
+    }
+}
+
+export const HomePageContainer = connect(mapStateToProps, mapDispatchToProps)(HomePage)

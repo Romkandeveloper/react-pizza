@@ -17,5 +17,5 @@ export const filtersReducer = (state = initialState, action) => {
         }
     }
 
-    return store;
+    return state;
 }
