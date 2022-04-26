@@ -35,7 +35,7 @@ const HomePage = ({pizzas, setPizzas}) => {
 
 const mapStateToProps = (state) => {
     return {
-        pizzas: state.pizzas,
+        pizzas: state.pizzas.items,
     }
 }
 
