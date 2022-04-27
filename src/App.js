@@ -1,7 +1,8 @@
 import './styles/app.scss';
 import {Header} from './components/Header';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {HomePageContainer} from './pages/HomePage';
+// import {HomePageContainer} from './pages/HomePage';
+import {HomePage} from './pages/HomePage';
 import {CartPage} from './pages/CartPage';
 
 import {Provider} from 'react-redux';
@@ -16,7 +17,8 @@ function App() {
 
                   <div class="content">
                     <Routes>
-                        <Route path="/" element={<HomePageContainer />} />
+                    {/* <Route path="/" element={<HomePageContainer />} /> */}
+                        <Route path="/" element={<HomePage />} />
                         <Route path="/checkout" element={<CartPage />} />
                     </Routes>
                   </div>

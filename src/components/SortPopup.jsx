@@ -1,8 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {setSort} from '../redux/actions/filters';
 
-const SortPopup = ({sort, types}) => {
+export const SortPopUp = () => {
+
+    const {types, sort} = useSelector( state => ({
+        types: ['популярности', 'цене', 'алфавиту'],
+        sort: state.sort,
+    }));
+
+    const dispatch = useDispatch();
 
     const [visiblePopUp, setVisiblePopUp] = useState(false);
     const [activeItem, setActiveItem] = useState(0)
@@ -58,17 +65,17 @@ const SortPopup = ({sort, types}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        types: ['популярности', 'цене', 'алфавиту'],
-        sort: state.sort
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setSortType: sortType => dispatch(setSort(sortType))
-    }
-}
-
-export const SortPopUpContainer = connect(mapStateToProps, mapDispatchToProps)(SortPopup);
+// const mapStateToProps = (state) => {
+//     return {
+//         types: ['популярности', 'цене', 'алфавиту'],
+//         sort: state.sort
+//     }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         setSortType: sortType => dispatch(setSort(sortType))
+//     }
+// }
+//
+// export const SortPopUpContainer = connect(mapStateToProps, mapDispatchToProps)(SortPopup);
