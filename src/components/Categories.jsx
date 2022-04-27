@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 
 export const Categories = ({categories}) => {
 
     const [activeItem, setActiveItem] = useState(null);
 
-    const onSelectItem = (index) => {
+    //callback shouldn`t use
+    const onSelectItem = useCallback(index => {
         setActiveItem(index)
-    }
+    },[]);
 
     return (
         <div className="categories">

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {connect, useDispatch, useSelector} from "react-redux";
 import {setSort} from '../redux/actions/filters';
 
@@ -25,10 +25,11 @@ export const SortPopUp = () => {
         document.addEventListener('click', handleOutsideClick);
     },[]);
 
-    const changeActiveItem = (newActiveItem) => {
+    //callBack shouldn`t use
+    const changeActiveItem = useCallback(newActiveItem => {
         setActiveItem(newActiveItem);
         setVisiblePopUp(false);
-    }
+    }, []);
 
     return (
         <div className="sort"
