@@ -19,7 +19,6 @@ export const Categories = ({categories}) => {
                 </li>
                 {
                     categories &&
-
                     categories.map((item, index) => (
                         <li className={activeItem === index ? 'active' : ''}
                             key={`${item}_${index}`}
