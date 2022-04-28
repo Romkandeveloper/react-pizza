@@ -6,6 +6,7 @@ import {PizzaBlock} from '../components/PizzaBlock';
 import axios from "axios";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {setPizzas} from '../redux/actions/pizzas';
+import {fetchPizzasThunkCreator} from '../redux/actions/pizzas';
 
 export const HomePage = () => {
 
@@ -16,8 +17,7 @@ export const HomePage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get('http://localhost:3000/db.json')
-            .then(res => dispatch(setPizzas(res.data.pizzas)));
+        dispatch(fetchPizzasThunkCreator());
     },[]);
 
     return (
