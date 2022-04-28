@@ -11,9 +11,11 @@ export const isLoading = (status) => ({
 });
 
 export const fetchPizzasThunkCreator = () => (dispatch) => {
-    return (
-        dispatch(isLoading(true));
-        axios.get('http://localhost:3000/db.json')
-             .then(res => dispatch(setPizzas(res.data.pizzas)))
-    )
+        dispatch(isLoading(true))
+
+        //for view skeleton
+        setTimeout(() => {
+            axios.get('http://localhost:3000/db.json')
+                     .then(res => dispatch(setPizzas(res.data.pizzas)))
+        }, 1500);
 };

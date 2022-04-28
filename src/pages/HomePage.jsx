@@ -7,11 +7,13 @@ import axios from "axios";
 import {connect, useDispatch, useSelector} from "react-redux";
 import {setPizzas} from '../redux/actions/pizzas';
 import {fetchPizzasThunkCreator} from '../redux/actions/pizzas';
+import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 
 export const HomePage = () => {
 
-    const { pizzas } = useSelector(state => ({
+    const { pizzas, isLoading } = useSelector(state => ({
         pizzas: state.pizzas.items,
+        isLoading: state.pizzas.isLoading,
     }));
 
     const dispatch = useDispatch();
@@ -31,9 +33,10 @@ export const HomePage = () => {
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
                 {
-                    pizzas.length &&
-                    pizzas.map(item => (
-                        <PizzaBlock key={item.id} {...item} />
+                    isLoading
+                        ? new Array(12).fill(<PizzaSkeleton/>)
+                        : pizzas.length && pizzas.map(item => (
+                            <PizzaBlock key={item.id} {...item} />
                     ))
                 }
             </div>

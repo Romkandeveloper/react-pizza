@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import classNames from "classnames";
+import PizzaSkeleton from "./PizzaSkeleton";
 
 export const PizzaBlock = ({name, imageUrl, price, types, sizes}) => {
 
