@@ -18,6 +18,8 @@ export const HomePage = () => {
         isLoading: state.pizzas.isLoading,
     }));
 
+    const activeCategoryName = categories.categoryTypes.find(el=> el.index === categories.activeCategory).type;
+
     window._state = useSelector(state => state);
 
     debugger;
@@ -35,7 +37,7 @@ export const HomePage = () => {
                 {/*<SortPopUpContainer />*/}
                 <SortPopUp sorts={sorts}/>
             </div>
-            <h2 className="content__title">Все пиццы</h2>
+            <h2 className="content__title">{activeCategoryName} пиццы</h2>
             <div className="content__items">
                 {
                     isLoading
