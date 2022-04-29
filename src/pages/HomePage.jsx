@@ -18,7 +18,9 @@ export const HomePage = () => {
         isLoading: state.pizzas.isLoading,
     }));
 
-    const activeCategoryName = categories.categoryTypes.find(el=> el.index === categories.activeCategory).type;
+    const activeCategoryName = categories.activeCategory !== null
+                                ? categories.categoryTypes.find(el=> el.index === categories.activeCategory).type
+                                : 'Все';
 
     window._state = useSelector(state => state);
 
