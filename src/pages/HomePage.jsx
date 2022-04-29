@@ -11,21 +11,26 @@ import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 
 export const HomePage = () => {
 
-    const { pizzas, isLoading } = useSelector(state => ({
+    const { sorts, pizzas, isLoading, categories } = useSelector(state => ({
+        categories: state.filters.categories,
+        sorts: state.filters.sorts,
         pizzas: state.pizzas.items,
         isLoading: state.pizzas.isLoading,
     }));
 
+    window._state = useSelector(state => state);
+
+    debugger;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPizzasThunkCreator());
-    },[]);
+        dispatch(fetchPizzasThunkCreator(categories.activeCategory, sorts.activeSortType));
+    },[categories.activeCategory, sorts.activeSortType]);
 
     return (
         <div className="container">
             <div className="content__top">
-                <Categories categories={["Мясные", "Вегетерианские", "Гриль", "Острые", "Закрытые"]}/>
+                <Categories categories={categories}/>
 
                 {/*<SortPopUpContainer />*/}
                 <SortPopUp />
@@ -35,7 +40,7 @@ export const HomePage = () => {
                 {
                     isLoading
                         ? new Array(12).fill(<PizzaSkeleton/>)
-                        : pizzas.length && pizzas.map(item => (
+                        : pizzas.map(item => (
                             <PizzaBlock key={item.id} {...item} />
                     ))
                 }

@@ -10,12 +10,12 @@ export const isLoading = (status) => ({
     payload: status,
 });
 
-export const fetchPizzasThunkCreator = () => (dispatch) => {
-        dispatch(isLoading(true))
+export const fetchPizzasThunkCreator = (category, sortType) => (dispatch) => {
+        dispatch(isLoading(true));
 
         //for view skeleton
         setTimeout(() => {
-            axios.get('http://localhost:3000/db.json')
-                     .then(res => dispatch(setPizzas(res.data.pizzas)))
+            axios.get(`http://localhost:3001/pizzas?category=${category}&_sort=${sortType}&_order=asc`)
+                     .then(res => dispatch(setPizzas(res.data)))
         }, 1500);
 };

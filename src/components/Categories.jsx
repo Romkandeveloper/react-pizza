@@ -1,29 +1,31 @@
 import React, {useCallback, useState} from 'react';
+import {useDispatch} from "react-redux";
+import {setCategory} from '../redux/actions/filters';
 
 export const Categories = ({categories}) => {
 
-    const [activeItem, setActiveItem] = useState(null);
+    const dispatch = useDispatch();
 
     //callback shouldn`t use
     const onSelectItem = useCallback(index => {
-        setActiveItem(index)
+        dispatch(setCategory(index))
     },[]);
 
     return (
         <div className="categories">
             <ul>
-                <li className={activeItem === null ? 'active' : ''}
+                <li className={categories.activeCategory === null ? 'active' : ''}
                     onClick={()=>onSelectItem(null)}
                 >
                     Все
                 </li>
                 {
                     categories &&
-                    categories.map((item, index) => (
-                        <li className={activeItem === index ? 'active' : ''}
+                    categories.categoryTypes.map((item, index) => (
+                        <li className={categories.activeCategory === index ? 'active' : ''}
                             key={`${item}_${index}`}
                             onClick={()=>onSelectItem(index)}>
-                            {item}
+                            {item.type}
                         </li>
                     ))
                 }
