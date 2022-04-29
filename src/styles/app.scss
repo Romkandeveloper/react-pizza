@@ -27,7 +27,11 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+
+    & svg:not(:nth-of-type(4n)) {
+      margin-right: 3.7%;
+    }
   }
 
   &__top {
