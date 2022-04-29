@@ -1,7 +1,10 @@
+
+//TO DO: switch type->index
+
 const initialState = {
     sorts: {
         activeSortType: 'rating',
-        sortTypes: ['price','rating','name'],
+        sortTypes: [{type: 'популярности', index: 'rating'},{type: 'цене', index: 'price'},{type: 'алфавиту', index: 'name'}],
     },
     categories: {
         activeCategory: 0,
@@ -13,7 +16,7 @@ export const filtersReducer = (state = initialState, action) => {
     if (action.type === 'SET_SORT') {
         return {
             ...state,
-            sortBy: action.payload,
+            sorts: {...state.sorts, activeSortType: action.payload}
         }
     }
     if(action.type === 'SET_CATEGORY') {

@@ -2,17 +2,11 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {connect, useDispatch, useSelector} from "react-redux";
 import {setSort} from '../redux/actions/filters';
 
-export const SortPopUp = () => {
-
-    const {types, sort} = useSelector( state => ({
-        types: ['популярности', 'цене', 'алфавиту'],
-        sort: state.sort,
-    }));
+export const SortPopUp = ({sorts}) => {
 
     const dispatch = useDispatch();
 
     const [visiblePopUp, setVisiblePopUp] = useState(false);
-    const [activeItem, setActiveItem] = useState(0)
     const sortBlock = useRef();
 
     const handleOutsideClick = (e) => {
@@ -27,7 +21,7 @@ export const SortPopUp = () => {
 
     //callBack shouldn`t use
     const changeActiveItem = useCallback(newActiveItem => {
-        setActiveItem(newActiveItem);
+        dispatch(setSort(newActiveItem));
         setVisiblePopUp(false);
     }, []);
 
@@ -41,7 +35,7 @@ export const SortPopUp = () => {
                     <path d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z" fill="#2C2C2C"/>
                 </svg>
                 <b>Сортировка по:</b>
-                <span>{types[activeItem]}</span>
+                <span>{sorts.sortTypes.find(el => el.index === sorts.activeSortType).type}</span>
             </div>
 
             {
@@ -49,13 +43,13 @@ export const SortPopUp = () => {
                 <div className="sort__popup">
                     <ul>
                         {
-                            types &&
-                            types.map((item, index) => (
-                                <li className={index === activeItem ? 'active' : ''}
-                                    key={`${item}_${index}`}
-                                    onClick={() => changeActiveItem(index)}
+                            sorts.sortTypes &&
+                            sorts.sortTypes.map((item, index) => (
+                                <li className={item.index === sorts.activeSortType ? 'active' : ''}
+                                    key={`${item.type}_${index}`}
+                                    onClick={() => changeActiveItem(item.index)}
                                 >
-                                    {item}
+                                    {item.type}
                                 </li>
                             ))
                         }
