@@ -1,35 +1,30 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+
 import {Categories} from '../components/Categories';
-//import {SortPopUpContainer} from '../components/SortPopup';
 import {SortPopUp} from '../components/SortPopup';
 import {PizzaBlock} from '../components/PizzaBlock';
-import axios from "axios";
-import {connect, useDispatch, useSelector} from "react-redux";
-import {setPizzas} from '../redux/actions/pizzas';
 import {fetchPizzasThunkCreator} from '../redux/actions/pizzas';
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
-import {Button} from "../components/Button";
 
 export const HomePage = () => {
 
-    const { sorts, pizzas, isLoading, categories } = useSelector(state => ({
+    const dispatch = useDispatch();
+
+    const { sorts, pizzas, loading, categories } = useSelector(state => ({
         categories: state.filters.categories,
         sorts: state.filters.sorts,
         pizzas: state.pizzas.items,
-        isLoading: state.pizzas.isLoading,
+        loading: state.pizzas.loading,
     }));
-
-    const activeCategoryName = categories.activeCategory !== null
-                                ? categories.categoryTypes.find(el=> el.index === categories.activeCategory).type
-                                : 'Всі';
-
-    window._state = useSelector(state => state);
-
-    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchPizzasThunkCreator(categories.activeCategory, sorts.activeSortType));
     },[categories.activeCategory, sorts.activeSortType]);
+
+    const activeCategoryName = categories.activeCategory !== null
+                                ? categories.categoryTypes.find(el=> el.index === categories.activeCategory).type
+                                : 'Всі';
 
     return (
         <div className="container">
@@ -42,10 +37,10 @@ export const HomePage = () => {
             <h2 className="content__title">{activeCategoryName} піци</h2>
             <div className="content__items">
                 {
-                    isLoading
-                        ? new Array(12).fill(<PizzaSkeleton/>)
+                    loading
+                        ? new Array(12).fill(<PizzaSkeleton />)
                         : pizzas.map(item => (
-                            <PizzaBlock key={item.id} item={item} {...item} />
+                            <PizzaBlock key={`${item.id}_${item.imageUrl}`} item={item} />
                     ))
                 }
             </div>

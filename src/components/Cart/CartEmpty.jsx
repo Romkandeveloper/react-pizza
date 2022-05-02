@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import emptyCart from "../../assets/images/emptyCart.png"
+
+import emptyCartImg from "../../assets/images/emptyCart.png"
 
 export const CartEmpty = () => {
     return (
@@ -10,7 +11,7 @@ export const CartEmpty = () => {
                 Скоріш за все, ви ще не замовляли піцу.<br/>
                 Для того, щоб замовити піцу, перейдіть на головну сторінку.
             </p>
-            <img src={emptyCart} alt="Empty cart"/>
+            <img src={emptyCartImg} alt="Empty cart"/>
             <NavLink to={"/"} className="button button--black">
                 <span>Повернутися назад</span>
             </NavLink>

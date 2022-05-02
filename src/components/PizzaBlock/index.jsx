@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
 import classNames from "classnames";
-import PizzaSkeleton from "./PizzaSkeleton";
 import {useDispatch, useSelector} from "react-redux";
+
 import {addToCart} from "../../redux/actions/cart";
 import {Button} from "../Button";
 
-export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
+export const PizzaBlock = (props) => {
 
-    const defaultTypes = ['тонке','традиційне'];
-    const defaultSizes = [26, 30, 40];
-
-    const [activeType, setActiveType] = useState(types[0]);
-    const [activeSize, setActiveSize] = useState(sizes[0]);
+    const [activeType, setActiveType] = useState(props.item.types[0]);
+    const [activeSize, setActiveSize] = useState(props.item.sizes[0]);
 
     const dispatch = useDispatch();
     const { itemsInCart } = useSelector(state => ({
-        itemsInCart: state.cart.items[item.id] ? state.cart.items[item.id].totalItemCount: null,
+        itemsInCart: state.cart.items[props.item.id] ? state.cart.items[props.item.id].totalItemCount: null,
     }));
+
+    const defaultTypes = ['тонке','традиційне'];
+    const defaultSizes = [26, 30, 40];
 
     const addPizzaToCart = (item) => {
         dispatch(addToCart(item));
@@ -26,19 +26,20 @@ export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
         <div className="pizza-block">
             <img
                 className="pizza-block__image"
-                src={imageUrl}
-                alt={name}
+                src={props.item.imageUrl}
+                alt={props.item.name}
             />
-            <h4 className="pizza-block__title">{name}</h4>
+            <h4 className="pizza-block__title">{props.item.name}</h4>
             <div className="pizza-block__selector">
                 <ul>
                     {
                         defaultTypes.map((item, index) => (
                             <li
+                                key={item}
                                 onClick={()=>setActiveType(index)}
                                 className={classNames({
                                 'active': index === activeType,
-                                    'disabled': !types.includes(index)
+                                    'disabled': !props.item.types.includes(index)
                             })}>
                                 {item}
                             </li>
@@ -49,10 +50,11 @@ export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
                     {
                         defaultSizes.map((item, index) => (
                             <li
+                                key={item}
                                 onClick={()=>setActiveSize(defaultSizes[index])}
                                 className={classNames({
                                     'active': defaultSizes[index] === activeSize,
-                                    'disabled': !sizes.includes(defaultSizes[index])
+                                    'disabled': !props.item.sizes.includes(defaultSizes[index])
                                 })}>
                                 {item} см.
                             </li>
@@ -61,9 +63,9 @@ export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">від {price} ₽</div>
+                <div className="pizza-block__price">від {props.item.price} ₴</div>
 
-                <div onClick={()=>{addPizzaToCart(item)}}>
+                <div onClick={()=>{addPizzaToCart(props.item)}}>
                     <Button outline add>
                         <svg
                             width="12"

@@ -1,21 +1,23 @@
+import {SET_PIZZAS, LOADING} from '../actions/types';
+
 const initialState = {
     items: [],
     count: {},
-    isLoading: false,
+    loading: false,
 }
 
 export const pizzasReducer = (state = initialState, action) => {
-    if (action.type === 'SET_PIZZAS') {
+    if (action.type === SET_PIZZAS) {
         return {
             ...state,
-            isLoading: false,
+            loading: false,
             items: action.payload
         }
     }
-    if (action.type === 'IS_LOADING') {
+    if (action.type === LOADING) {
             return {
                 ...state,
-                isLoading: action.payload,
+                loading: action.payload,
             }
         }
 

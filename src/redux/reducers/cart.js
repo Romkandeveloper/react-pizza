@@ -1,3 +1,4 @@
+import {CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_FROM_CART, ADD_TO_CART} from '../actions/types';
 
 const initialState = {
     items: {},
@@ -6,7 +7,7 @@ const initialState = {
 }
 
 export const cartReducer = (state = initialState, action) => {
-    if (action.type === 'CLEAR_CART') {
+    if (action.type === CLEAR_CART) {
         return {
             ...state,
             items: {},
@@ -14,7 +15,7 @@ export const cartReducer = (state = initialState, action) => {
             totalSum: 0,
         }
     }
-    if (action.type === 'REMOVE_ALL_FROM_CART') {
+    if (action.type === REMOVE_ALL_FROM_CART) {
 
         const totalItems = state.totalItems - state.items[action.payload].totalItemCount;
         const totalSum = state.totalSum - state.items[action.payload].totalItemSum;
@@ -31,7 +32,7 @@ export const cartReducer = (state = initialState, action) => {
             totalSum,
         }
     }
-    if (action.type === 'REMOVE_FROM_CART') {
+    if (action.type === REMOVE_FROM_CART) {
 
             const totalItems = state.totalItems - 1;
             const totalSum = state.totalSum - action.payload.price;
@@ -52,7 +53,7 @@ export const cartReducer = (state = initialState, action) => {
                 totalSum,
             }
         }
-    if (action.type === 'ADD_TO_CART') {
+    if (action.type === ADD_TO_CART) {
 
         const totalItemSum = (state.items[action.payload.id] && state.items[action.payload.id].totalItemSum) ? (state.items[action.payload.id].totalItemSum + action.payload.price) : action.payload.price;
         const totalItemCount = (state.items[action.payload.id] && state.items[action.payload.id].totalItemCount) ? (state.items[action.payload.id].totalItemCount + 1) : 1;

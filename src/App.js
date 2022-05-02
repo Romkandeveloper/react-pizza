@@ -12,10 +12,10 @@ function App() {
   return (
         <BrowserRouter>
             <Provider store={store}>
-                <div class="wrapper">
+                <div className="wrapper">
                   <Header />
 
-                  <div class="content">
+                  <div className="content">
                     <Routes>
                     {/* <Route path="/" element={<HomePageContainer />} /> */}
                         <Route path="/" element={<HomePage />} />

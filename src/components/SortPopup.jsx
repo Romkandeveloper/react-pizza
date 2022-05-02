@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {connect, useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
 import {setSort} from '../redux/actions/filters';
 
 export const SortPopUp = ({sorts}) => {
@@ -15,11 +16,11 @@ export const SortPopUp = ({sorts}) => {
         }
     }
 
-    const activeSortType = sorts.sortTypes.find(el => el.index === sorts.activeSortType).type;
-
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick);
     },[]);
+
+    const activeSortType = sorts.sortTypes.find(el => el.index === sorts.activeSortType).type;
 
     //callBack shouldn`t use
     const changeActiveItem = useCallback(newActiveItem => {

@@ -1,5 +1,4 @@
-
-//TO DO: switch type->index
+import {SET_SORT, SET_CATEGORY} from '../actions/types';
 
 const initialState = {
     sorts: {
@@ -13,13 +12,13 @@ const initialState = {
 }
 
 export const filtersReducer = (state = initialState, action) => {
-    if (action.type === 'SET_SORT') {
+    if (action.type === SET_SORT) {
         return {
             ...state,
             sorts: {...state.sorts, activeSortType: action.payload}
         }
     }
-    if(action.type === 'SET_CATEGORY') {
+    if(action.type === SET_CATEGORY) {
         return {
             ...state,
             categories: {...state.categories, activeCategory: action.payload}

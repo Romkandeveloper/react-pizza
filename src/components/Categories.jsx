@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {useDispatch} from "react-redux";
+
 import {setCategory} from '../redux/actions/filters';
 
 export const Categories = ({categories}) => {
@@ -8,6 +9,7 @@ export const Categories = ({categories}) => {
 
     //callback shouldn`t use
     const onSelectItem = useCallback(index => {
+        debugger;
         dispatch(setCategory(index))
     },[]);
 
