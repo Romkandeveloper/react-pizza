@@ -17,7 +17,7 @@ export const Categories = ({categories}) => {
                 <li className={categories.activeCategory === null ? 'active' : ''}
                     onClick={()=>onSelectItem(null)}
                 >
-                    Все
+                    Всі
                 </li>
                 {
                     categories &&

@@ -32,7 +32,7 @@ export const CartItem = (props) => {
                 </div>
             </div>
             <div className="cart__item-price">
-                <b>{props.totalSum} ₽</b>
+                <b>{props.totalSum} ₴</b>
             </div>
             <div onClick={ () => props.remove(props.item.id) }  className="cart__item-remove">
                 <div className="button button--outline button--circle">

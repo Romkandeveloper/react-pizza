@@ -7,7 +7,7 @@ import {Button} from "../Button";
 
 export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
 
-    const defaultTypes = ['тонкое','традиционное'];
+    const defaultTypes = ['тонке','традиційне'];
     const defaultSizes = [26, 30, 40];
 
     const [activeType, setActiveType] = useState(types[0]);
@@ -61,7 +61,7 @@ export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от {price} ₽</div>
+                <div className="pizza-block__price">від {price} ₽</div>
 
                 <div onClick={()=>{addPizzaToCart(item)}}>
                     <Button outline add>
@@ -77,7 +77,7 @@ export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
                                 fill="white"
                             />
                         </svg>
-                        <span>Добавить</span>
+                        <span>Додати</span>
                         {
                             itemsInCart &&
                             <i>{itemsInCart}</i>

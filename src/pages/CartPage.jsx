@@ -52,7 +52,7 @@ export const CartPage = () => {
                                     <path d="M11.6666 9.16667V14.1667" stroke="#B6B6B6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
 
-                                <span>Очистить корзину</span>
+                                <span>Очистити кошик</span>
                             </div>
                         </div>
                         <div className="content__items">
@@ -66,18 +66,18 @@ export const CartPage = () => {
                         </div>
                         <div className="cart__bottom">
                             <div className="cart__bottom-details">
-                                <span> Всего пицц: <b>{cart.totalItems} шт.</b> </span>
-                                <span> Сумма заказа: <b>{cart.totalSum} ₽</b> </span>
+                                <span> Всього піц: <b>{cart.totalItems} шт.</b> </span>
+                                <span> Сума заказу: <b>{cart.totalSum} ₽</b> </span>
                             </div>
                             <div className="cart__bottom-buttons">
                                 <NavLink to={'/'} className="button button--outline button--add go-back-btn">
                                     <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
-                                    <span>Вернуться назад</span>
+                                    <span>Повернутися назад</span>
                                 </NavLink>
                                 <Button className="pay-btn aaa">
-                                    <span>Оплатить сейчас</span>
+                                    <span>Сплатити зараз</span>
                                 </Button>
                             </div>
                         </div>

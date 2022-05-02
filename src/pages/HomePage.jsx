@@ -21,7 +21,7 @@ export const HomePage = () => {
 
     const activeCategoryName = categories.activeCategory !== null
                                 ? categories.categoryTypes.find(el=> el.index === categories.activeCategory).type
-                                : 'Все';
+                                : 'Всі';
 
     window._state = useSelector(state => state);
 
@@ -39,7 +39,7 @@ export const HomePage = () => {
                 {/*<SortPopUpContainer />*/}
                 <SortPopUp sorts={sorts}/>
             </div>
-            <h2 className="content__title">{activeCategoryName} пиццы</h2>
+            <h2 className="content__title">{activeCategoryName} піци</h2>
             <div className="content__items">
                 {
                     isLoading
