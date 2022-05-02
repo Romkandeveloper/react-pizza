@@ -45,7 +45,7 @@ export const CartPage = () => {
                                 </svg>
                                 <span>Вернуться назад</span>
                             </NavLink>
-                            <Button className="pay-btn">
+                            <Button className="pay-btn aaa">
                                 <span>Оплатить сейчас</span>
                             </Button>
                         </div>

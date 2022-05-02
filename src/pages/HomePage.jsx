@@ -8,6 +8,7 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import {setPizzas} from '../redux/actions/pizzas';
 import {fetchPizzasThunkCreator} from '../redux/actions/pizzas';
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
+import {Button} from "../components/Button";
 
 export const HomePage = () => {
 
@@ -45,10 +46,13 @@ export const HomePage = () => {
                     isLoading
                         ? new Array(12).fill(<PizzaSkeleton/>)
                         : pizzas.map(item => (
-                            <PizzaBlock key={item.id} {...item} />
+                            <PizzaBlock key={item.id} item={item} {...item} />
                     ))
                 }
             </div>
+            {/*<Button load outline>*/}
+            {/*    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>*/}
+            {/*</Button>*/}
         </div>
     )
 }

@@ -16,6 +16,10 @@ export const fetchPizzasThunkCreator = (category, sortType) => (dispatch) => {
         //for view skeleton
         setTimeout(() => {
             axios.get(`http://localhost:3001/pizzas?${category==! null ? `category=${category}` : ''}&_sort=${sortType}&_order=asc`)
-                     .then(res => dispatch(setPizzas(res.data)))
+                     .then(res => {
+                        console.log(res);
+
+                        dispatch(setPizzas(res.data))
+                     })
         }, 1500);
 };
