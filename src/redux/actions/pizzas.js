@@ -14,7 +14,7 @@ export const loading = (status) => ({
 
 export const fetchPizzasThunkCreator = (category, sortType) => (dispatch) => {
         dispatch(loading(true));
-        debugger;
+
         setTimeout(() => {
             axios.get(`http://localhost:3001/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortType}&_order=asc`)
                      .then(res => dispatch(setPizzas(res.data)))
