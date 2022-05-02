@@ -13,7 +13,7 @@ export const CartItem = (props) => {
             </div>
             <div className="cart__item-info">
                 <h3>{props.item.name}</h3>
-                <p>{props.item.price} ₽ / шт. </p>
+                <p>{props.item.price} ₴ / шт. </p>
             </div>
             <div className="cart__item-count">
                 <div onClick={() => {if (props.totalItems != 1) props.minus(props.item)}} className="button button--outline button--circle cart__item-count-minus">
