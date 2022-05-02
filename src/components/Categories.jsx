@@ -9,7 +9,6 @@ export const Categories = ({categories}) => {
 
     //callback shouldn`t use
     const onSelectItem = useCallback(index => {
-        debugger;
         dispatch(setCategory(index))
     },[]);
 
