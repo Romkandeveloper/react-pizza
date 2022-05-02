@@ -25,7 +25,6 @@ export const HomePage = () => {
 
     window._state = useSelector(state => state);
 
-    debugger;
     const dispatch = useDispatch();
 
     useEffect(() => {

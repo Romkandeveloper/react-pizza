@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {Button} from "../components/Button";
 import {CartEmpty} from "../components/Cart/CartEmpty";
 import {useDispatch, useSelector} from "react-redux";
-import {clearCart} from "../redux/actions/cart";
+import {clearCart, removeFromCart, addToCart, removeAllFromCart} from "../redux/actions/cart";
 
 export const CartPage = () => {
 
@@ -16,6 +16,18 @@ export const CartPage = () => {
             dispatch(clearCart())
         }
     };
+
+    const handlePlusItem = (item) => {
+        dispatch(addToCart(item));
+    }
+
+    const handleMinusItem = (item) => {
+        dispatch(removeFromCart(item));
+    }
+
+    const handleRemoveItem = (id) => {
+        dispatch(removeAllFromCart(id));
+    }
 
     return (
 
@@ -47,7 +59,7 @@ export const CartPage = () => {
 
                             {
                                 Object.keys(cart.items).map(item => (
-                                    <CartItem item={cart.items[item].items[0]} totalItems={cart.items[item].totalItemCount} totalSum={cart.items[item].totalItemSum} />
+                                    <CartItem item={cart.items[item].items[0]} remove={handleRemoveItem} minus={handleMinusItem} plus={handlePlusItem} totalItems={cart.items[item].totalItemCount} totalSum={cart.items[item].totalItemSum} />
                                 ))
                             }
 

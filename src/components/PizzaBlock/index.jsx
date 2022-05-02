@@ -22,8 +22,6 @@ export const PizzaBlock = ({item, name, imageUrl, price, types, sizes}) => {
         dispatch(addToCart(item));
     }
 
-    debugger;
-
     return (
         <div className="pizza-block">
             <img
